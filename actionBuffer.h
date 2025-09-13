@@ -11,4 +11,6 @@
 #error "dataTypes should be in /home/user/tads/dataTypes ."
 #endif // DATA_TYPES_H
 
+#define isActionBuffer(obj) isType(obj, ActionBuffer)
+
 #define ACTION_BUFFER_H

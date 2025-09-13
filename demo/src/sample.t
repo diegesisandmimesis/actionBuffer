@@ -21,29 +21,22 @@
 
 #include "actionBuffer.h"
 
-versionInfo: GameID
-        name = 'actionBuffer Library Demo Game'
-        byline = 'Diegesis & Mimesis'
-        desc = 'Demo game for the actionBuffer library. '
-        version = '1.0'
-        IFID = '12345'
-	showAbout() {
-		"This is a simple test game that demonstrates the features
-		of the actionBuffer library.
-		<.p>
-		Consult the README.txt document distributed with the library
-		source for a quick summary of how to use the library in your
-		own games.
-		<.p>
-		The library source is also extensively commented in a way
-		intended to make it as readable as possible. ";
-	}
+versionInfo: GameID;
+gameMain: GameMainDef initialPlayerChar = me;
+
+startRoom: Room 'Void'
+	"This is a featureless void."
+	north = northRoom
+	south = southRoom
 ;
-gameMain: GameMainDef
-	initialPlayerChar = me
-	inlineCommand(cmd) { "<b>&gt;<<toString(cmd).toUpper()>></b>"; }
-	printCommand(cmd) { "<.p>\n\t<<inlineCommand(cmd)>><.p> "; }
++me: Person;
+
+northRoom: Room 'North Room'
+	"This is the north room. "
+	south = startRoom
 ;
 
-startRoom: Room 'Void' "This is a featureless void.";
-+me: Person;
+southRoom: Room 'South Room'
+	"This is the south room. "
+	north = startRoom
+;
