@@ -64,10 +64,10 @@ In this example we'll use ``/home/username/tads`` as the base directory.
 
 * Clone this repo:
 
-  ``git clone https://github.com/diegesisandmimesis/fastPath.git``
+  ``git clone https://github.com/diegesisandmimesis/locationHistory.git``
 
 After the ``git`` command, the module source will be in
-``/home/username/tads/fastPath``.
+``/home/username/tads/locationHistory``.
 
 <a name="running"/></a>
 ### Compiling and Running Demos
@@ -78,18 +78,18 @@ comes with the module.
 
 All the demos are structured in the expectation that they will be compiled
 and run from the ``./demo/`` directory.  Again assuming that the module
-is installed in ``/home/username/tads/fastPath/``, enter the directory with:
+is installed in ``/home/username/tads/locationHistory/``, enter the directory with:
 ```
-# cd /home/username/tads/fastPath/demo
+# cd /home/username/tads/locationHistory/demo
 ```
 Then make one of the demos, for example:
 ```
-# make -a -f FIXME.t3m
+# make -a -f makefile.t3m
 ```
 This should produce a bunch of output from the compiler but no errors.  When
 it is done you can run the demo from the same directory with:
 ```
-# frob games/FIXME.t3
+# frob games/game.t3
 ```
 In general the name of the makefile and the name of the compiled story file
 will be the same except for the extensions (``.t3m`` for makefiles and
@@ -143,3 +143,15 @@ will be the same except for the extensions (``.t3m`` for makefiles and
 
 <a name="examples"/></a>
 ## Examples
+
+To enable location history tracking for a defined ``Actor`` named ``alice``:
+```
+    modify alice
+        useLocationHistory = true
+    ;
+```
+
+To return ``alice``'s location history:
+```
+    local hist = alice.getLocationHistory();
+```
