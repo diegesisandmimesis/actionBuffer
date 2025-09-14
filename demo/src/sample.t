@@ -40,3 +40,28 @@ southRoom: Room 'South Room'
 	"This is the south room. "
 	north = startRoom
 ;
+
+#ifdef __DEBUG
+DefineSystemAction(LHLast)
+	execSystemAction() {
+		local rm;
+
+		if((rm = gActor.getPreviousLocation()) == nil) {
+			defaultReport('No last location. ');
+			exit;
+		}
+		defaultReport('Last locaiton was <<rm.roomName>>. ');
+	}
+;
+VerbRule(LHLast) 'lhlast': LHLastAction
+	verbPhrase = 'lhlast/lhlasting';
+
+DefineSystemAction(LH)
+	execSystemAction() {
+		gActor.logLocationHistory();
+	}
+;
+VerbRule(LH) 'lh': LHAction
+	verbPhrase = 'lh/lhing';
+
+#endif // __DEBUG
