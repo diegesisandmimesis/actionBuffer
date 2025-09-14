@@ -1,6 +1,12 @@
-# actionBuffer
+# locationHistory
 
-A TADS3/adv3 module for FIXME.
+A TADS3/adv3 module providing a mechanism for tracking the locations occupied
+by ``Actor``s.
+
+The main implementation detail to be aware of is that the history is only
+updated if the actor's ``.location`` changes and is non-``nil``.  If an
+actor remains in the same location for multiple turns this will not cause
+the history to fill up with multiple references to the same location.
 
 ## Description
 
@@ -12,7 +18,7 @@ A TADS3/adv3 module for FIXME.
 * [Compiling and Running Demos](#running)
 
 [Classes](#classes)
-* [ClassName](#class-name)
+* [Actor](#actor)
 
 [Examples](#examples)
 
@@ -92,22 +98,48 @@ will be the same except for the extensions (``.t3m`` for makefiles and
 <a name="classes"/></a>
 ## Classes
 
-<a name="class-name"/></a>
-### ClassName
+<a name="actor"/></a>
+### Actor
 
 #### Properties
 
-* ``foo = nil``
+* ``useLocationHistory = nil``
 
-  This is a description of the ``foo`` property.
+  If boolean ``true`` the ``Actor``'s location history will be tracked.
 
+  Default is ``nil``.
+
+* ``locaitonHistoryLength = 3``
+
+  Number of locations to remember.
+
+  The current location is always the last element of the history, so with
+  the defaut value of ``3`` this means the current and two prior
+  locaitons will be remembered.
 
 #### Methods
 
-* ``bar(arg)``
+* ``getLocationHistory()``
 
-  This is a description of the ``bar()`` method.
+  Returns a ``List`` containing the stored location history for this ``Actor``.
 
+* ``getMostRecentLocation()``
+
+  Returns the most recent location remembered for this ``Actor``.  In general
+  this should be equivalent to ``Actor.location``.
+
+* ``getPreviousLocation()``
+
+  Returns the second most recent location remembered for this ``Actor``.  This
+  is the location they were in prior to the current one.
+
+* ``rememberLocation()``
+
+  Method that stores the current location to the location history.
+
+  **NOTE**:  This should not be called directly unless you want to change the
+  default behavior of the module.  In normal operation it will already
+  be called once per turn from within the ``Actor``'s ``afterAction()`` method.
 
 <a name="examples"/></a>
 ## Examples
