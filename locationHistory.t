@@ -33,7 +33,7 @@ modify Actor
 
 	// Returns the location history, or an empty list if there is none.
 	getLocationHistory() {
-		return(_locationHistory ? _locationHistory : []);
+		return(_locationHistory ? _locationHistory.toList() : []);
 	}
 
 	// Returns the location the actor was in before their current location.
@@ -99,8 +99,8 @@ modify Actor
 		});
 #endif // __DEBUG
 	}
-
 #ifdef __DEBUG
+;
 
 DefineSystemAction(LHLast)
 	execSystemAction() {
