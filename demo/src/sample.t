@@ -4,7 +4,7 @@
 // Version 1.0
 // Copyright 2022 Diegesis & Mimesis
 //
-// This is a very simple demonstration "game" for the actionBuffer library.
+// This is a very simple demonstration "game" for the locationHistory library.
 //
 // It can be compiled via the included makefile with
 //
@@ -19,7 +19,7 @@
 #include <adv3.h>
 #include <en_us.h>
 
-#include "actionBuffer.h"
+#include "locationHistory.h"
 
 versionInfo: GameID;
 gameMain: GameMainDef initialPlayerChar = me;
@@ -29,7 +29,7 @@ startRoom: Room 'Void'
 	north = northRoom
 	south = southRoom
 ;
-+me: Person;
++me: Person useLocationHistory = true;
 
 northRoom: Room 'North Room'
 	"This is the north room. "

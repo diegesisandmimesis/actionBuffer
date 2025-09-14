@@ -5,6 +5,5 @@
 -o games/game.t3
 -lib system
 -lib adv3/adv3
--lib dataTypes/dataTypes
--lib ../actionBuffer
+-lib ../locationHistory
 -source src/sample.t
